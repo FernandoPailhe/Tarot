@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Tarot</string>
+    <string name="action_settings">Menu</string>
+    <!-- String for fragments labels -->
+    <string name="menu_fragment_label">Tarot de Marsella</string>
+    <string name="game_fragment_label">Tarot Diario</string>
+    <!-- Hamburger menu -->
+    <string name="user_example">Pamela Lazarte</string>
+    <string name="mail_example">pamela@techtoserve.com</string>
+    <string name="collections">Colecciones</string>
+    <string name="themes">Temas</string>
+    <string name="experiments">Experimentos</string>
+    <string name="downloads">Descargas</string>
+    <string name="notifications">Notificaciones</string>
+    <string name="comments">Envía comentarios</string>
+    <string name="about">Acerca de</string>
+    <!-- String for menu items -->
+    <string name="menu_title_1">Tirada a una carta</string>
+    <string name="menu_description_1">Si buscas una reflexión o un consejo que te ayude a responder lo que anhelas saber. Esta tirada a una carta te dará las pautas que necesitas.</string>
+    <string name="menu_title_2">Tirada clásica</string>
+    <string name="menu_description_2">La tirada de 3 cartas te da una visión más amplia y completa para responder a tus dudas.</string>
+    <string name="menu_title_3">El camino</string>
+    <string name="menu_description_3">Cuatro cartas que dibujan una senda. Las cartas de Marsella te señalan los primeros pasos, cuál es el desarrollo a tomar, el acercamiento a una solución y una reflexión.</string>
+    <!-- String for game fragment -->
+    <string name="drag_here">Arrastra\naquí</string>
+    <string name="pick_card">Elige tu carta</string>
+    <string name="result">Ver lectura</string>
+    <!-- String for notifications -->
+    <string name="after_result">Realiza tu segunda lectura presionando Aquí</string>
+    <string name="after_install">Realiza tu primer lectura presionando Aquí</string>
+</resources>

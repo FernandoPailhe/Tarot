@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="grape">#6f2da8</color>
+    <color name="grape_dark">#3E1A5D</color>
+    <color name="background_button">#037ccb</color>
+    <color name="border_button">#7820a3</color>
+    <color name="gray">#7C7C7C</color>
+    <color name="bar">#8b27bd</color>
+    <color name="card_space">#5b1474</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>

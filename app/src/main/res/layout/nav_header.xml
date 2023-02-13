@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/gradient_header">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:layout_marginStart="@dimen/fab_margin"
+            android:layout_marginBottom="@dimen/fab_margin"
+            android:background="#254f9b"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_account"
+            app:shapeAppearanceOverlay="@style/Circle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fab_margin"
+            android:layout_marginTop="@dimen/half_margin"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/user_example"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fab_margin"
+            android:layout_marginBottom="@dimen/half_margin"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/mail_example"
+            android:textColor="@color/white" />
+
+</LinearLayout>

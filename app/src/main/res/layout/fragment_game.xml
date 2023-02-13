@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grape"
+    tools:context=".presentation.game_fragment.GameFragment">
+
+    <LinearLayout
+        android:id="@+id/tarot_table"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/half_margin"
+        android:layout_marginHorizontal="@dimen/fab_margin"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/linear_layout_deck"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include
+            android:id="@+id/thirdCard"
+            layout="@layout/selected_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:orientation="horizontal">
+
+            <include
+                android:id="@+id/firstCard"
+                layout="@layout/selected_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/tiny_margin" />
+
+            <include
+                android:id="@+id/fifthCard"
+                layout="@layout/selected_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/tiny_margin" />
+
+            <include
+                android:id="@+id/secondCard"
+                layout="@layout/selected_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/tiny_margin" />
+
+        </LinearLayout>
+
+        <include
+            android:id="@+id/fourthCard"
+            layout="@layout/selected_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/image_drag_shadow"
+        android:layout_width="@dimen/card_width"
+        android:layout_height="@dimen/card_height"
+        android:contentDescription="@string/drag_here"
+        android:visibility="invisible"
+        android:src="@drawable/carta"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/linear_layout_deck"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/fab_margin"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/text_pick_card"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_max="@dimen/card_height"
+        app:layout_constraintHeight_percent="0.20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tarot_table" />
+
+    <TextView
+        android:id="@+id/text_pick_card"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/fab_margin"
+        android:fontFamily="@font/roboto"
+        android:text="@string/pick_card"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear_layout_deck" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/result"
+        android:layout_margin="@dimen/fab_margin"
+        android:fontFamily="@font/roboto_regular"
+        android:textAllCaps="false"
+        android:elevation="0dp"
+        android:backgroundTint="@color/background_button"
+        app:cornerRadius="5dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/border_button"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

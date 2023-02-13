@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="RoundedSquare">
+        <item name="cornerSize">4dp</item>
+    </style>
+
+    <style name="Circle">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="RoundedSquareDetail">
+        <item name="cornerSize">10%</item>
+    </style>
+
+</resources>

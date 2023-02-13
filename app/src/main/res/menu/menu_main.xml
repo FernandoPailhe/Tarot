@@ -1,0 +1,42 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.ferpa.tarot.presentation.MainActivity"
+    tools:showIn="navigation_view">
+
+    <item
+        android:id="@+id/collections"
+        android:icon="@drawable/ic_collections"
+        android:title="@string/collections" />
+
+    <item
+        android:id="@+id/themes"
+        android:icon="@drawable/ic_themes"
+        android:title="@string/themes" />
+
+    <item
+        android:id="@+id/experiments"
+        android:icon="@drawable/ic_experiments"
+        android:title="@string/experiments" />
+
+    <item
+        android:id="@+id/download"
+        android:icon="@drawable/ic_download"
+        android:title="@string/downloads"
+        android:enabled="false"/>
+
+    <item
+        android:id="@+id/notifications"
+        android:icon="@drawable/ic_notifications"
+        android:title="@string/notifications" />
+
+    <item
+        android:id="@+id/comments"
+        android:icon="@drawable/ic_comments"
+        android:title="@string/comments" />
+
+    <item
+        android:id="@+id/about"
+        android:icon="@drawable/ic_about"
+        android:title="@string/about" />
+
+</menu>
