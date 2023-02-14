@@ -80,7 +80,7 @@
         android:layout_height="0dp"
         android:layout_marginHorizontal="@dimen/fab_margin"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@id/text_pick_card"
+        app:layout_constraintBottom_toTopOf="@id/text_pick_card"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_max="@dimen/card_height"
         app:layout_constraintHeight_percent="0.20"

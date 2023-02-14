@@ -9,7 +9,6 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.datastore.preferences.preferencesDataStore
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -20,22 +19,14 @@ import com.ferpa.tarot.Notifications.Companion.MESSAGE_EXTRA
 import com.ferpa.tarot.Notifications.Companion.NOTIFICATION_ID
 import com.ferpa.tarot.R
 import com.ferpa.tarot.data.repository.TarotRepositoryImpl
-import com.ferpa.tarot.data.repository.TarotRepositoryImpl.Companion.PREFERENCES_NAME
 import com.ferpa.tarot.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
-import java.util.*
-import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
-    private val Context.dataStore by preferencesDataStore(name = PREFERENCES_NAME)
 
     companion object {
         const val NOTIFICATION_CHANNEL_ID = "notification_channel"
@@ -60,31 +51,6 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
-    }
-
-    override fun onStop() {
-        createChannel()
-        val scope = CoroutineScope(Dispatchers.Default)
-        val context = this@MainActivity.applicationContext
-        scope.launch {
-            val lastGameDate = getLastGameDate(context)
-            if (lastGameDate != null) {
-                scheduleNotification(
-                    context.getString(R.string.after_result),
-                    lastGameDate + TimeUnit.DAYS.toMillis(1)
-                )
-            } else {
-                scheduleNotification(
-                    context.getString(R.string.after_install),
-                    Calendar.getInstance().timeInMillis + TimeUnit.DAYS.toMillis(1)
-                )
-            }
-        }
-        super.onStop()
-    }
-
-    private suspend fun getLastGameDate(context: Context): Long? {
-        return context.dataStore.data.first()[TarotRepositoryImpl.LAST_GAME_DATE]
     }
 
     /**

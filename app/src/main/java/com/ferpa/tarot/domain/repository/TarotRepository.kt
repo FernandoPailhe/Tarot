@@ -8,4 +8,6 @@ interface TarotRepository {
 
     suspend fun setLastGameDate()
 
+    suspend fun getLastGameDate(): Long?
+
 }

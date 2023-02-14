@@ -3,16 +3,16 @@ package com.ferpa.tarot.presentation.game_fragment
 import android.content.ClipData
 import android.content.ClipDescription
 import android.os.Bundle
-import android.view.DragEvent
-import android.view.LayoutInflater
-import android.view.View
+import android.view.*
 import android.view.View.*
-import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.ferpa.tarot.R
+import com.ferpa.tarot.common.Extensions.getScreenHeight
+import com.ferpa.tarot.common.Extensions.getScreenWidth
 import com.ferpa.tarot.databinding.FragmentGameBinding
 import com.ferpa.tarot.domain.model.Card
 import com.ferpa.tarot.domain.model.bind
@@ -38,8 +38,23 @@ class GameFragment : Fragment(R.layout.fragment_game) {
 
         setDeckInterface()
 
+        manageLowDpScreens()
+
         subscribeSelectedCards()
 
+    }
+
+    /**
+     * Check if screen Height is lower than 1920 dp and change layout params if it is necessary.
+     */
+    private fun manageLowDpScreens() {
+        val screenHeight = binding.root.context.getScreenHeight()
+        if (screenHeight < 1920) {
+            binding.tarotTable.layoutParams = ConstraintLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+        }
     }
 
     /**
@@ -205,7 +220,6 @@ class GameFragment : Fragment(R.layout.fragment_game) {
         }
     }
 
-
     /**
      *  Resets the game if viewModel.alreadyBeenSeen is set to true
      */
@@ -224,7 +238,7 @@ class GameFragment : Fragment(R.layout.fragment_game) {
     private fun setDeckView(cards: List<Card>) {
         val linearLayout = binding.linearLayoutDeck
         val layoutInflater = LayoutInflater.from(binding.root.context)
-        val cardWidth = 86
+        val cardWidth = (binding.root.context.getScreenWidth() / 12.5).toInt()
         cards.forEachIndexed { index, card ->
             val isLastCard = index == cards.size - 1
             val view = layoutInflater.inflate(R.layout.card, linearLayout, false)
@@ -250,7 +264,6 @@ class GameFragment : Fragment(R.layout.fragment_game) {
             linearLayout.addView(view)
         }
     }
-
 
     /**
      * Subscribes to the deck property of the viewModel and updates the view accordingly.

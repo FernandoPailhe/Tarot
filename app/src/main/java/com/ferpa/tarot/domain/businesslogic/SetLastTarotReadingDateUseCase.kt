@@ -3,7 +3,7 @@ package com.ferpa.tarot.domain.businesslogic
 import com.ferpa.tarot.domain.repository.TarotRepository
 import javax.inject.Inject
 
-class SetLastGameDateUseCase @Inject constructor(
+class SetLastTarotReadingDateUseCase @Inject constructor(
     private val repository: TarotRepository
 ) {
 

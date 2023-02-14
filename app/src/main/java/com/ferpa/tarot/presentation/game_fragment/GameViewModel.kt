@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ferpa.tarot.domain.businesslogic.GetDeckUseCase
-import com.ferpa.tarot.domain.businesslogic.SetLastGameDateUseCase
+import com.ferpa.tarot.domain.businesslogic.SetLastTarotReadingDateUseCase
 import com.ferpa.tarot.domain.model.Card
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class GameViewModel @Inject constructor(
     private val getDeckUseCase: GetDeckUseCase,
-    private val setLastGameDateUseCase: SetLastGameDateUseCase
+    private val setLastTarotReadingDateUseCase: SetLastTarotReadingDateUseCase
 ) : ViewModel() {
 
     private val _deck = MutableLiveData<List<Card>>(getDeckUseCase())
@@ -62,7 +62,7 @@ class GameViewModel @Inject constructor(
     fun setAlreadyBeenSeen() {
         _alreadyBeenSenn.value = true
         viewModelScope.launch {
-            setLastGameDateUseCase()
+            setLastTarotReadingDateUseCase()
         }
     }
 
