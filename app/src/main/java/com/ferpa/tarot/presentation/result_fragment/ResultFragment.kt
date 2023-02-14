@@ -1,12 +1,9 @@
 package com.ferpa.tarot.presentation.result_fragment
 
 import android.app.AlarmManager
-import android.app.NotificationChannel
-import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +16,6 @@ import com.ferpa.tarot.Notifications
 import com.ferpa.tarot.R
 import com.ferpa.tarot.databinding.FragmentResultBinding
 import com.ferpa.tarot.domain.model.Card
-import com.ferpa.tarot.presentation.MainActivity
 import com.ferpa.tarot.presentation.game_fragment.GameViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -44,15 +40,33 @@ class ResultFragment : Fragment(R.layout.fragment_result) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        createChannel()
-        scheduleNotification(
-            getString(R.string.after_result),
-            Calendar.getInstance().timeInMillis + TimeUnit.DAYS.toMillis(1),
-            binding.root.context
-        )
+        subscribeIsFirstTarotReading()
         setResultRecyclerView()
         subscribeResult()
 
+    }
+
+    /**
+     * This function subscribes to a `LiveData` object, `isFirstTarotReading`, from the view model and observes for changes in its value.
+     *
+     * When the value of `isFirstTarotReading` changes to `true`, the function schedules a notification to be triggered. The notification's
+     * message is retrieved from a string resource with the key `R.string.after_result`, and the trigger time is set to one day from the current
+     * time. The context required for scheduling the notification is obtained from the view's root.
+     *
+     * @see viewModel.isFirstTarotReading
+     * @see scheduleNotification
+     * @see getString
+     */
+    private fun subscribeIsFirstTarotReading(){
+        viewModel.isFirstTarotReading.observe(viewLifecycleOwner, Observer { isFirstTarotReading ->
+            if (isFirstTarotReading) {
+                scheduleNotification(
+                    getString(R.string.after_result),
+                    Calendar.getInstance().timeInMillis + TimeUnit.DAYS.toMillis(1),
+                    binding.root.context
+                )
+            }
+        })
     }
 
     private fun subscribeResult() {
@@ -82,6 +96,7 @@ class ResultFragment : Fragment(R.layout.fragment_result) {
 
     /**
      * Schedules a notification to be shown to the user.
+     *
      * @param message: a string value representing the message to be displayed in the notification.
      * @param trigger: a long value representing the trigger time for the notification to be shown, in milliseconds.
      */
@@ -103,23 +118,4 @@ class ResultFragment : Fragment(R.layout.fragment_result) {
         )
     }
 
-    /**
-     * Create Notification Channel
-     */
-    private fun createChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                MainActivity.NOTIFICATION_CHANNEL_ID,
-                getString(R.string.app_name),
-                NotificationManager.IMPORTANCE_DEFAULT
-            ).apply {
-                description = getString(R.string.after_result)
-            }
-
-            val notificationManager: NotificationManager =
-                activity?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
-            notificationManager.createNotificationChannel((channel))
-        }
-    }
 }

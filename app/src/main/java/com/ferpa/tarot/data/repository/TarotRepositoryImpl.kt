@@ -16,21 +16,26 @@ class TarotRepositoryImpl(private val source: Source, private val context: Conte
 
     companion object {
         const val PREFERENCES_NAME = "user"
-        val LAST_GAME_DATE = longPreferencesKey("last_game_date")
+        val FIRST_GAME_DATE = longPreferencesKey("first_game_date")
     }
 
     override fun getShuffledDeck(): List<Card> {
         return source.deck.cards.shuffled()
     }
 
-    override suspend fun setLastGameDate() {
-        context.dataStore.edit {
-            it[LAST_GAME_DATE] = Calendar.getInstance().timeInMillis
+    override suspend fun setFirstTarotReadingDate(): Boolean {
+        return if (context.dataStore.data.first()[FIRST_GAME_DATE] != null ) {
+            false
+        } else {
+            context.dataStore.edit {
+                it[FIRST_GAME_DATE] = Calendar.getInstance().timeInMillis
+            }
+            true
         }
     }
 
     override suspend fun getLastGameDate(): Long? {
-        return context.dataStore.data.first()[LAST_GAME_DATE]
+        return context.dataStore.data.first()[FIRST_GAME_DATE]
     }
 
 }

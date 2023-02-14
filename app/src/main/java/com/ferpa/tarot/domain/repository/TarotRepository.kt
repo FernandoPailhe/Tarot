@@ -6,7 +6,7 @@ interface TarotRepository {
 
     fun getShuffledDeck(): List<Card>
 
-    suspend fun setLastGameDate()
+    suspend fun setFirstTarotReadingDate(): Boolean
 
     suspend fun getLastGameDate(): Long?
 

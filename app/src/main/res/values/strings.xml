@@ -26,6 +26,7 @@
     <string name="pick_card">Elige tu carta</string>
     <string name="result">Ver lectura</string>
     <!-- String for notifications -->
+    <string name="notification_description">Invitación a realizar una nueva lectura</string>
     <string name="after_result">Realiza tu segunda lectura presionando Aquí</string>
     <string name="after_install">Realiza tu primer lectura presionando Aquí</string>
 </resources>
