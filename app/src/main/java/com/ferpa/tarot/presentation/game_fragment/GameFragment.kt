@@ -5,7 +5,6 @@ import android.content.ClipDescription
 import android.os.Bundle
 import android.view.*
 import android.view.View.*
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -13,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.ferpa.tarot.R
 import com.ferpa.tarot.common.Extensions.getScreenHeight
 import com.ferpa.tarot.common.Extensions.getScreenWidth
+import com.ferpa.tarot.common.Extensions.setCardSize
 import com.ferpa.tarot.databinding.FragmentGameBinding
 import com.ferpa.tarot.domain.model.Card
 import com.ferpa.tarot.domain.model.bind
@@ -38,22 +38,50 @@ class GameFragment : Fragment(R.layout.fragment_game) {
 
         setDeckInterface()
 
-        manageLowDpScreens()
+        setCardsSizes()
 
         subscribeSelectedCards()
 
     }
 
     /**
-     * Check if screen Height is lower than 1920 dp and change layout params if it is necessary.
+     * Set selected cards size according screen size.
      */
-    private fun manageLowDpScreens() {
+    private fun setCardsSizes() {
         val screenHeight = binding.root.context.getScreenHeight()
+
+        binding.apply {
+            firstCard.apply {
+                layoutCard.setCardSize(screenHeight)
+                imageSelectedCard.setCardSize(screenHeight)
+            }
+            secondCard.apply {
+                layoutCard.setCardSize(screenHeight)
+                imageSelectedCard.setCardSize(screenHeight)
+            }
+            thirdCard.apply {
+                layoutCard.setCardSize(screenHeight)
+                imageSelectedCard.setCardSize(screenHeight)
+            }
+            fourthCard.apply {
+                layoutCard.setCardSize(screenHeight)
+                imageSelectedCard.setCardSize(screenHeight)
+            }
+            fifthCard.apply {
+                layoutCard.setCardSize(screenHeight)
+                imageSelectedCard.setCardSize(screenHeight)
+            }
+            imageDragShadow.setCardSize(screenHeight)
+        }
         if (screenHeight < 1920) {
-            binding.tarotTable.layoutParams = ConstraintLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
+            binding.apply {
+                firstCard.textCardTitle.textSize = 8f
+                secondCard.textCardTitle.textSize = 8f
+                thirdCard.textCardTitle.textSize = 8f
+                fourthCard.textCardTitle.textSize = 8f
+                fifthCard.textCardTitle.textSize = 8f
+                textPickCard.textSize = 12f
+            }
         }
     }
 
@@ -188,7 +216,6 @@ class GameFragment : Fragment(R.layout.fragment_game) {
         }
     }
 
-
     /**
      * Sets the OnDragListener for the layout view and sets its background to the
      * R.drawable.gradient_border resource.
@@ -199,7 +226,6 @@ class GameFragment : Fragment(R.layout.fragment_game) {
         text.visibility = VISIBLE
         layout.setBackgroundResource(R.drawable.gradient_border)
     }
-
 
     /**
      * Disables and hides the linearLayoutDeck and textPickCard views, and makes the buttonResult
@@ -221,7 +247,7 @@ class GameFragment : Fragment(R.layout.fragment_game) {
     }
 
     /**
-     *  Resets the game if viewModel.alreadyBeenSeen is set to true
+     *  Set deck interface.
      */
     private fun setDeckInterface() {
         if (viewModel.alreadyBeenSenn.value == true) viewModel.resetGame()
